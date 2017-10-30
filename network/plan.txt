@@ -1,0 +1,46 @@
+A "social" network test
+
+_LEGEND_
+[*] = important
+[?] = not sure
+[s] = standard
+[+] = would be nice
+[-] = don't do that, unless you absolutely have to
+[x] = don't do that, ever
+
+_DESCRIPTION_
+A social network test, mostly sparked out of boredom, trying to do friends list and possibly even groups.
+This project is very much user oriented, less focus on posts and content itself, more focus on user.
+
+_NOTE TO SELF_
+	[*] Write the damn best code you can, [-] no repeating, [*] set up functions, if things go wrong, [*] START OVER!
+	[*] Refer to white board often!
+
+	[*] COMMENT, COMMENT, COMMENT!!!
+
+_TODO_
+	1. Singleton pattern for db variable (conn)
+	2. [*] User Pages
+	3. [*] Friends
+	4. [?] Groups
+	5. [s] Posts feed
+	6. [s] Search function
+	7. [+] Cookies
+
+_HIEARCHY_
+
+	  [.class]
+		  |				
+[.ajax]-[.inc]-[.php]
+
+_NOTES TO HIEARCHY_
+	Classes have their seperate folder!
+	[*] .php and .inc are in the same (root) folder, little messy, but I like it that way.
+	JavaScript has it's own folder, divided into JS and ajax, where JS is UI stuff, and ajax is for dynamic calls!
+
+	Resources will contain all page resources, not uploads, uploads have their own seperate folder!
+	[*] Make multiple stylesheets, make CSS look good (no [x] style.css!!!)!
+
+	[*] pages have their own folder!
+	[*] index.php is just a compilation of .php files, not much actual HTML!
+	[*] Make different pages into different files, keep it minimalistic! 

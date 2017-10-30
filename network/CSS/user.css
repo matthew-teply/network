@@ -1,0 +1,83 @@
+:root {
+
+	--broder-col: #ccc;
+}
+
+section {
+
+	border: 1px solid var(--broder-col);
+	display: inline-block;
+	margin: 20px;
+	padding: 10px;
+	padding-bottom: 20px;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: #fafafa;
+	vertical-align: top;
+}
+
+#user_main {
+
+	max-height: 250px;
+}
+
+#user_main img {
+
+	width: 250px;
+	height: 250px;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 5px;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px #555;
+}
+
+#user_main ul {
+
+	display: inline-block;
+	vertical-align: top;
+	list-style: none;
+}
+
+#user_main ul li:first-child {
+
+	list-style: none;
+	margin: 0px 12px 0px 12px;
+}
+
+#user_main ul li:first-child h1 {
+
+	text-transform: uppercase;
+}
+
+#user_main ul li:first-child p {
+
+	color: #a0a0a0;
+}
+
+#user_main ul li {
+
+	margin-top: 15px;
+	margin-left: 24px;
+	margin-right: 14px;
+}
+
+#user_main ul li article {
+
+	margin-top: 3px;
+	border-left: 3px solid #ccc;
+	padding: 10px;
+	max-width: 400px;
+}
+
+#user_main ul li:last-child {
+
+	list-style: none;
+	margin: 20px 24px 0px 24px;
+	width: 420px;
+}
+
+#user_main ul li:last-child button {
+
+	margin-left: 10px;
+}
