@@ -9,7 +9,6 @@ section {
 	display: inline-block;
 	margin: 20px;
 	padding: 10px;
-	padding-bottom: 20px;
 	border-radius: 10px;
 	overflow: hidden;
 	background-color: #fafafa;
@@ -19,6 +18,7 @@ section {
 #user_main {
 
 	max-height: 250px;
+	padding-bottom: 20px;
 }
 
 #user_main img {
@@ -47,7 +47,7 @@ section {
 
 #user_main ul li:first-child h1 {
 
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 }
 
 #user_main ul li:first-child p {
@@ -65,9 +65,16 @@ section {
 #user_main ul li article {
 
 	margin-top: 3px;
+	width: 400px;
+	height: 90px;
+	padding: 10px;
+}
+
+#user_main ul li article p {
+
 	border-left: 3px solid #ccc;
 	padding: 10px;
-	max-width: 400px;
+	margin: -10px;
 }
 
 #user_main ul li:last-child {
@@ -75,9 +82,40 @@ section {
 	list-style: none;
 	margin: 20px 24px 0px 24px;
 	width: 420px;
+	bottom: 10px;
 }
 
 #user_main ul li:last-child button {
 
-	margin-left: 10px;
+	margin-right: 10px;
+	float:left;
+}
+
+#user_friends_requests form:first-child {
+
+	margin-top: -10px;
+	border-top: none;
+}
+
+#user_friends_requests form {
+
+	border-top: 1px solid #aaa;
+	margin: -10px;
+	margin-top: 10px;
+	padding: 5px;
+	text-align: right;
+	display: inline-block;
+}
+
+#user_friends_requests form span {
+
+	float: left;
+	margin-top: 4px;
+	margin-left: 4px;
+}
+
+#user_friends_requests form button {
+
+	margin-left: 20px;
+	display: inline-block;
 }

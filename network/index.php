@@ -2,7 +2,7 @@
 
 	//All prerequisities
 	session_start();
-	error_reporting(0);
+	error_reporting(1);
 
 	//includes
 	include 'users.inc.php';
@@ -36,6 +36,9 @@
 			include 'pages/feed.php'; //IF you are logged in, show feed page
 	}
 ?>
+
+<script src="external/jquery.min.js"></script>
+<script src="JS/ajax/users.ajax.js"></script>
 
 </body>
 </html>
