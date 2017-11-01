@@ -5,6 +5,15 @@
 	font-family: 'Lato', sans-serif;
 }
 
+.wrapper {
+	text-align: center;
+}
+
+.container {
+	text-align: left;
+	display: inline-block;
+}
+
 body {
 
 	background-color: #fff;

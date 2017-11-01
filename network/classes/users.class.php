@@ -165,18 +165,22 @@ class User {
 			$row = $results->fetch_assoc();
 
 			if($opt == "list")
-				echo "<a href='index.php?usr=".$row['id']."'>".$row['first']." ".$row['last']."</a><br>";
-			if($opt == "req" && !empty($f_id)) {
-
-				echo 
-				"
-				<form class='f_add_form' id='_".$row['id']."'>
-					<span><a href='index.php?usr=".$row['id']."'>".$row['first']." ".$row['last']."</a> wants to be your friend!</span>
-					<input type='hidden' value='".$row['id']."' id='f_add_f_id_".$row['id']."'>
-					<input type='hidden' value='".$this->getId($_SESSION['netw_uid'])."' id='f_add_id_".$row['id']."'>
-					<button type='submit'><i class='fa fa-check'></i> Accept request</button>
-				</form><br>
-				";
+				echo "<a href='index.php?usr=".$row['id']."'>".$row['first']." ".$row['last']."</a>";
+			if($opt == "req") {
+				if(empty($row['f_req'])) {
+					echo 
+					"
+					<form class='f_add_form' id='_".$row['id']."'>
+						<span><a href='index.php?usr=".$row['id']."'>".$row['first']." ".$row['last']."</a> wants to be your friend!</span>
+						<input type='hidden' value='".$row['id']."' id='f_add_f_id_".$row['id']."'>
+						<input type='hidden' value='".$this->getId($_SESSION['netw_uid'])."' id='f_add_id_".$row['id']."'>
+						<button type='submit'><i class='fa fa-check'></i> Accept request</button>
+					</form><br>
+					";
+				}
+				else {
+					echo "You have no friend requests!";
+				}
 			}
 		}
 	}
@@ -243,14 +247,10 @@ class User {
 		
 		array_push($f_list_array, $f_req_array[$f_id_key]);
 
-		print_r($f_list_array);
-		if (sizeof($f_list_array) != 0) {
-			if(empty($f_list_array[0]))
-				unset($f_list_array[0]);
-			$f_list_string = implode(",", $f_list_array);
-		}
-		else
-			$f_list_string = $f_id;
+		if(empty($f_list_array[0]))
+			unset($f_list_array[0]);
+
+		$f_list_string = implode(",", $f_list_array);
 
 		$stmnt = $this->conn->prepare("UPDATE users SET f_list=? WHERE id=?");
 		$stmnt->bind_param("si", $f_list_string, $id);
@@ -299,14 +299,32 @@ class User {
 
 		array_push($f_list_array, $id);
 
-		if(sizeof($f_list_array) != 2) //[0] is a space for some weird reson...
-			$f_list_string = implode(",", $f_list_array);
-		else
-			$f_list_string = $f_list_array[1];
+		if(empty($f_list_array[0]))
+			unset($f_list_array[0]);
+
+		$f_list_string = implode(",", $f_list_array);
 
 		$stmnt = $this->conn->prepare("UPDATE users SET f_list=? WHERE id=?");
 		$stmnt->bind_param("si", $f_list_string, $f_id);
 
 		$stmnt->execute();
+	}
+
+	//Account edits
+	public function editBio($id, $content) {
+
+		if($id != $this->getId($_SESSION['netw_uid']))
+			exit("You are not allowed to edit this user's bio!");
+
+		$content = str_replace("<br>", "", $content);
+		$content = str_replace("<div>", "", $content);
+		$content = preg_replace("/\s+/", " ", $content);
+
+		$stmnt = $this->conn->prepare("UPDATE users SET bio=? WHERE id=?");
+		$stmnt->bind_param("si", htmlspecialchars($content), $id);
+
+		$stmnt->execute();
+
+		echo htmlspecialchars($content);//"Bio updated!";
 	}
 }

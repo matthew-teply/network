@@ -3,6 +3,11 @@
 	--broder-col: #ccc;
 }
 
+.container {
+
+	width: 750px;
+}
+
 section {
 
 	border: 1px solid var(--broder-col);
@@ -19,6 +24,7 @@ section {
 
 	max-height: 250px;
 	padding-bottom: 20px;
+	width: 750px;
 }
 
 #user_main img {
@@ -37,6 +43,7 @@ section {
 	display: inline-block;
 	vertical-align: top;
 	list-style: none;
+	margin-top: 10px;
 }
 
 #user_main ul li:first-child {
@@ -115,7 +122,62 @@ section {
 }
 
 #user_friends_requests form button {
-
 	margin-left: 20px;
 	display: inline-block;
+}
+
+#user_friends_list {
+	padding: 0px;
+	padding-bottom: 5px;
+}
+
+#user_friends_list h2 {
+	text-align: center;
+	padding: 3px;
+	background-color: #eee;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 5px;
+	color: #555;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+#user_friends_list a {
+
+	display: block;
+	font-size: 20px;
+	margin: 5px;
+	color: #000;
+	text-decoration: none;
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 5px;
+}
+
+#user_friends_list a:active {
+
+}
+
+#user_friends_list a:last-child {
+
+	border-bottom: none;
+	padding-bottom: 0px;
+}
+
+#user_toolbar {
+
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 750px;
+	text-align: center;
+}
+
+#user_toolbar button {
+
+	margin-left: 10px;
+}
+
+#user_bio {
+
+	outline: none;
+	display: block;
+	max-width: 500px;
 }

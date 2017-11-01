@@ -22,6 +22,8 @@
 </head>
 <body>
 
+<input type="hidden" id="user_id" value=<?php echo inc_getId($_SESSION['netw_uid']); ?>>
+
 <?php 
 
 	include 'pages/header.php';
@@ -39,6 +41,8 @@
 
 <script src="external/jquery.min.js"></script>
 <script src="JS/ajax/users.ajax.js"></script>
+<script src="JS/ajax/acc_edit.ajax.js"></script>
+<script src="JS/user_edit.js"></script>
 
 </body>
 </html>

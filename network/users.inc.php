@@ -50,6 +50,11 @@ function inc_addFriend($id, $f_id) {
 	return $obj->addFriend($id, $f_id);
 }
 
+function inc_editBio($id, $content) {
+	$obj = new User;
+	return $obj->editBio($id, $content);
+}
+
 //PHP (_GET)
 if(isset($_GET['un_getUser']))
 	inc_un_getUser();
@@ -68,3 +73,6 @@ if(isset($_POST['sendReq_call']))
 
 if(isset($_POST['addFriend_call']))
 	inc_addFriend($_POST['data_id'], $_POST['data_f_id']);
+
+if(isset($_POST['editBio_call']))
+	inc_editBio($_POST['data_id'], $_POST['data_content']);
