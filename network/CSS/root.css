@@ -2,7 +2,8 @@
 
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Lato', sans-serif;
+	font-family: helvetica;
+	/*font-family: 'Lato', sans-serif;*/
 }
 
 .wrapper {
@@ -21,6 +22,18 @@ body {
 
 button {
 
+	/*<button colors>*/
+
+	--alert-bg: #f91313;
+	--alert-border: #851414;
+	--alert-shadow: #d83c3c;
+
+	--focus-bg: #3375e0;
+	--focus-border: #113e87;
+	--focus-shadow: #436db2;
+
+	/*</button colors>*/
+
 	border: 1px solid #aaa;
 	background-color: #fff;
 	padding: 8px;
@@ -32,9 +45,37 @@ button {
 	cursor: pointer;
 }
 
+.bttn-alert {
+
+	background-color: var(--alert-bg);
+	border-color: var(--alert-border);
+	color: #fff;
+	box-shadow: inset 0px -1px 10px var(--alert-shadow);
+	text-shadow: inset 0px -1px 10px var(--alert-shadow);
+}
+
+.bttn-alert .fa-times {
+
+	color: #fff;
+}
+
+.bttn-focus {
+
+	background-color: var(--focus-bg);
+	border-color: var(--focus-border);
+	color: #fff;
+	box-shadow: inset 0px -1px 10px var(--focus-shadow);
+	text-shadow: inset 0px -1px 10px var(--focus-shadow);
+}
+
 button:active {
 
-	transform: scale(0.98);
+	transform: scale(0.95);
+}
+
+button[disabled] {
+
+	cursor: default;
 }
 
 header {
@@ -47,6 +88,21 @@ header {
 header a {
 
 	color: #fff;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+header a img {
+
+	width: 25px;
+	height: 25px;
+	margin-right: 5px;
+	border-radius: 50%;
+}
+
+header a span {
+
+	vertical-align: top;
 }
 
 header h1 {
@@ -85,4 +141,16 @@ header ul li button {
 header p {
 
 	margin-right: 20px;
+}
+
+.fa-check {
+
+	color: #21ed24;
+	text-shadow: 1px 1px 1px darkgreen;
+}
+
+.fa-times {
+
+	color: red;
+	text-shadow: 1px 1px 1px darkred;
 }

@@ -19,6 +19,9 @@
 	<link rel="stylesheet" type="text/css" href="CSS/root.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="CSS/css/font-awesome.min.css">
+
+	<script src="external/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -38,11 +41,6 @@
 			include 'pages/feed.php'; //IF you are logged in, show feed page
 	}
 ?>
-
-<script src="external/jquery.min.js"></script>
-<script src="JS/ajax/users.ajax.js"></script>
-<script src="JS/ajax/acc_edit.ajax.js"></script>
-<script src="JS/user_edit.js"></script>
 
 </body>
 </html>

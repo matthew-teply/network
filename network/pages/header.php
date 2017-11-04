@@ -6,8 +6,8 @@
 				<button>Sign in</button>
 				<button>Signup</button>
 			</li>
-		<?php else: ?>
-			<li><p><a href=<?php echo "index.php?usr=".inc_getId($_SESSION['netw_uid']); ?>><i class="fa fa-user-o"></i> <?php echo $_SESSION['netw_uid']; ?></a></p></li>
+		<?php else: $id = inc_getId($_SESSION['netw_uid'])?>
+			<li><p><a href=<?php echo "index.php?usr=".$id; ?>><img src=<?php echo inc_getInfo($id, "img"); ?>><span> <?php echo inc_getInfo($id, "first")." ".inc_getInfo($id, "last"); ?></span></a></p></li>
 			<li><a href="users.inc.php?un_getUser"><i class="fa fa-sign-out"></i> Signout</a></li>
 		<?php endif ?>
 	</ul>
