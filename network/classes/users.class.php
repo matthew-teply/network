@@ -54,6 +54,23 @@ class User extends DBConnection {
 
  	public function setUser($username, $first, $last, $password, $email) { //Sign up
 
+ 		$username = preg_replace("/\s+/", " ", $username);
+ 		$first = preg_replace("/\s+/", " ", $first);
+ 		$last = preg_replace("/\s+/", " ", $last);
+
+ 		if(empty($username))
+ 			exit("Username cannot be empty!");
+ 		if(empty($first))
+ 			exit("First name cannot be empty!");
+ 		if(empty($last))
+ 			exit("Last name cannot be empty!");
+ 		if(empty($password))
+ 			exit("Password cannot be empty!");
+ 		if(empty($email))
+ 			exit("E-mail cannot be empty!");
+ 		if(!strpos($email, '@') || !strpos($email, '.'))
+ 			exit("E-mail invalid (Doesn't contain '@' and/or '.')");
+
 		$hash_password = password_hash($password, PASSWORD_DEFAULT);
 
 		$stmnt = $this->conn->prepare("SELECT * FROM users WHERE uid=? OR em=?");
@@ -68,7 +85,6 @@ class User extends DBConnection {
 		if ($numRows != 0) {
 
 			exit("This username or email is already taken!");
-			return false;
 		}
 
 		else {
