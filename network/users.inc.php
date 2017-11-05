@@ -1,6 +1,6 @@
 <?php
 
-include 'classes/users.class.php';
+require('classes/users.class.php');
 
 //Fetches functions from the user class, makes them avalible to both static PHP calls and Ajax calls
 

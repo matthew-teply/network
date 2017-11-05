@@ -1,32 +1,11 @@
-:root {
-
-	--broder-col: #ccc;
-}
-
 .container {
 
 	width: 750px;
 }
 
-section {
-
-	border: 1px solid var(--broder-col);
-	display: inline-block;
-	margin: 15px;
-	margin-left: 7px;
-	margin-right: 7px;
-	padding: 10px;
-	border-radius: 10px;
-	overflow: hidden;
-	background-color: #fafafa;
-	vertical-align: top;
-	box-shadow: inset 0px 0px 1px #eaeaea;
-}
-
 #user_main {
 
 	max-height: 250px;
-	padding-bottom: 20px;
 	width: 750px;
 }
 
@@ -65,7 +44,7 @@ section {
 
 	margin-top: 3px;
 	width: 400px;
-	height: 90px;
+	max-height: 90;
 	padding: 10px;
 }
 
@@ -79,9 +58,7 @@ section {
 #user_main ul li:last-child {
 
 	list-style: none;
-	margin: 20px 24px 0px 24px;
 	width: 420px;
-	bottom: 10px;
 }
 
 #user_main ul li:last-child button {
@@ -90,17 +67,31 @@ section {
 	float:left;
 }
 
-#user_friends_requests form:first-child {
+#user_friends_requests {
 
-	margin-top: -10px;
-	border-top: none;
+	padding: 0px;
+}
+
+#user_friends_requests div {
+
+	border-bottom: 1px solid #aaa;
+	margin-top: 10px;
+	width: 100%;
+	padding-bottom: 10px;
+	padding: 10px;
+	padding-top: 0px;
+}
+
+#user_friends_requests div:last-child {
+
+	border-bottom: none;
 }
 
 #user_friends_requests form {
 
 	position: relative;
-	margin: -10px;
 	padding: 5px;
+	margin: -10px;
 	text-align: right;
 	display: inline-block;
 }
@@ -122,6 +113,7 @@ section {
 
 	vertical-align: middle;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 #user_friends_requests a img {
@@ -157,21 +149,20 @@ section {
 #user_friends_list a {
 
 	display: inline-block;
-	padding: 15px;
-	padding-top: 10px;
-	padding-bottom: 4px;
-	font-size: 20px;
+	padding-top: 4px;
+	padding-right: 10px;
+	padding-left: 10px;
 	text-decoration: none;
-	color: #505050;
 	text-align: left;
 	float: left;
+	font-weight: bold;
 }
 
 #user_friends_list div {
 
 	text-align: right;
 	width: 100%;
-	height: 45px;
+	height: 40px;
 }
 
 #user_friends_list div:nth-child(odd) {
@@ -184,22 +175,12 @@ section {
 	padding-bottom: 4px;
 }
 
-#user_friends_list div:hover {
-
-	background-color: #0061ff;
-	color: #fff;
-}
-
-#user_friends_list a:hover {
-
-	background-color: #0061ff;
-	color: #fff;
-}
-
 #user_friends_list a img {
 
-	width: 25px;
-	height: 25px;
+	width: 20px;
+	height: 20px;
+	padding-top: 6px;
+	margin-right: 5px;
 }
 
 #user_friends_list form {
@@ -230,7 +211,6 @@ section {
 #user_toolbar {
 
 	margin-top: 0px;
-	margin-bottom: 0px;
 	width: 750px;
 	text-align: center;
 }
@@ -250,10 +230,13 @@ section {
 	max-height: 200px;
 	overflow-y: hidden;
 	word-wrap: break-word;
+	background-color: #f5f5f5;
 }
 
 #user_img_div {
 	
+	margin-top: 4px;
+	margin-left: 4px;
 	padding: 5px;
 	padding-bottom: 0px;
 	display: inline-block;
@@ -268,8 +251,8 @@ section {
 	display: inline-block;
 	z-index: 2;
 	border-radius: 50%;
-	width: 250px;
-	height: 250px;
+	width: 180px;
+	height: 180px;
 	background-size: cover;
 }
 
@@ -277,8 +260,8 @@ section {
 
 	display: none;
 	position: absolute;
-	width: 250px;
-	height: 250px;
+	width: 180px;
+	height: 180px;
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 50%;
@@ -287,8 +270,8 @@ section {
 #user_img_overlay h3 {
 
 	position: absolute;
-	top: 80px;
-	left: 80px;
+	top: 40px;
+	left: 45px;
 	color: #fff;
 	text-align: center;
 	border: 1px solid #fff;
@@ -320,11 +303,53 @@ section {
 #user_img_overlay form button {
 
 	position: absolute;
-	bottom: 50px;
-	left: 74px;
+	bottom: 25px;
+	left: 40px;
 }
 
 .f_add_form_button, .f_decline_form_button {
 
 	padding: 8px;
+}
+
+#group_create_section {
+
+	width: 750px;
+	display: none;
+}
+
+#group_create_section b {
+	
+	margin-top: 10px;
+	margin-bottom: 4px;
+	display: block;
+	font-size: 12px;
+}
+
+#group_create_section input[type=text] {
+
+	padding: 4px;
+	width: 200px;
+}
+
+#group_create_section textarea {
+
+	width: calc(100% - 10px);
+	height: 120px;
+	padding: 4px;
+}
+
+#group_create_section div {
+
+	margin-bottom: 10px;
+}
+
+#group_create_section button {
+
+	font-size: 12px;
+}
+
+#group_create_section div span {
+
+	font-size: 14px;
 }

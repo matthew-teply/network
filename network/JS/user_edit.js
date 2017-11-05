@@ -16,8 +16,9 @@ $(document).ready(function() {
 			isEditing = true;
 		}
 		else {
+			$("#user_acc_edit_bio_bttn").html("<i class='fa fa-cloud'></i> Update");
 			$("#user_bio").prop('contenteditable', false);
-			$("#user_bio").css('background-color', '#fafafa');
+			$("#user_bio").css('background-color', '#f5f5f5');
 			$("#user_bio").css('border', '1px solid #fafafa');
 			$("#user_bio").css('border-left', '3px solid #ccc');
 			$("#user_acc_edit").html("<i class='fa fa-pencil'></i> Edit Profile");
@@ -36,5 +37,11 @@ $(document).ready(function() {
 
 		editBio_toggle(isEditing);
 		editImg_toggle(isEditing);
+	});
+
+	$("#user_img_file").change(function() {
+
+		$("#user_img_submit").attr('class', 'bttn-focus');
+		$("#user_img_submit").prop('disabled', false);
 	});
 });

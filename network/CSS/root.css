@@ -20,16 +20,40 @@ body {
 	background-color: #fff;
 }
 
+section {
+
+	border: 1px solid #ccc;
+	display: inline-block;
+	margin: 15px;
+	margin-left: 7px;
+	margin-right: 7px;
+	margin-top: 0px;
+	padding: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: #fafafa;
+	vertical-align: top;
+	box-shadow: inset 0px 0px 1px #eaeaea;
+	text-align: left;
+}
+
+section:first-child {
+
+	margin-top: 15px;
+}
+
 button {
 
 	/*<button colors>*/
 
 	--alert-bg: #f91313;
+	--alert-bg-active: #ce1616;
 	--alert-border: #851414;
 	--alert-shadow: #d83c3c;
 
 	--focus-bg: #3375e0;
-	--focus-border: #113e87;
+	--focus-bg-active: #2f65bc;
+	--focus-border: #082656;
 	--focus-shadow: #436db2;
 
 	/*</button colors>*/
@@ -54,6 +78,11 @@ button {
 	text-shadow: inset 0px -1px 10px var(--alert-shadow);
 }
 
+.bttn-alert:active {
+
+	background-color: var(--alert-bg-active);
+}
+
 .bttn-alert .fa-times {
 
 	color: #fff;
@@ -68,9 +97,14 @@ button {
 	text-shadow: inset 0px -1px 10px var(--focus-shadow);
 }
 
+.bttn-focus:active {
+
+	background-color: var(--focus-bg-active);
+}
+
 button:active {
 
-	transform: scale(0.95);
+	background-color: #eee;
 }
 
 button[disabled] {

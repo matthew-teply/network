@@ -16,7 +16,7 @@
 						<h3>Choose<br><i class="fa fa-picture-o"></i></h3>
 						<form style="position: absolute;" id="user_img_upload" method="POST" enctype="multipart/form-data">
 							<input type="file" name="user_img" id="user_img_file">
-							<button type="submit" name="setUserImg_subm" class="bttn-focus"><i class="fa fa-upload"></i> Upload</button>
+							<button type="submit" name="setUserImg_subm" id="user_img_submit" disabled="true"><i class="fa fa-upload"></i> Upload</button>
 						</form>
 					</div>
 				</div>
@@ -37,7 +37,6 @@
 						 	echo inc_getInfo($_GET['usr'], "bio");
 						 ?>
 						 </p>
-						<button id="user_acc_edit_bio_bttn" class="bttn-focus" style="display: none; margin-right: 20px; margin-top: 20px;"><i class="fa fa-cloud"></i> Update</button>
 					</article>
 				</li>
 				<?php if ($_SESSION['netw_uid'] != inc_getInfo($_GET['usr'], "uid")): ?>
@@ -58,6 +57,7 @@
 						<?php if(in_array($f_id, $f_req_array)): ?>
 
 							<span id="profile_sender_req_span">
+								<style type="text/css"> #user_main ul li:last-child { margin-top: 30px;  } </style>
 								<b style="position: absolute; top: -22px"><?php echo $f_first." ".$f_last." wants to be your friend!"; ?></b>
 								<form class='f_add_form' id=<?php echo "_".$f_id; ?>>
 									<input type='hidden' value=<?php echo $f_id; ?> id=<?php echo "f_add_f_id_".$f_id; ?>>
@@ -92,10 +92,45 @@
 		</section>
 
 		<?php if ($_SESSION['netw_uid'] == inc_getInfo($_GET['usr'], "uid")): ?>
+			
 			<section id="user_toolbar">
+				<button id="user_acc_edit_bio_bttn" class="bttn-focus" style="display: none;"><i class="fa fa-cloud"></i> Update</button>
 				<button id="user_acc_edit"><i class="fa fa-pencil"></i> Edit Profile</button>
+				<?php if (inc_checkMainAdmin(inc_getId($_SESSION['netw_uid'])) == true): ?>
+					<button disabled="true" title="You already have a group"><i class="fa fa-plus"></i> Create group</button>
+				<?php else: ?>
+					<button id="group_create_bttn"><i class="fa fa-plus"></i> Create group</button>
+				<?php endif ?>
 				<button id="user_acc_settings"><i class="fa fa-cog"></i> Account settings</button>
 			</section>
+
+			<?php if (inc_checkMainAdmin(inc_getId($_SESSION['netw_uid'])) == false): ?>
+				<section id="group_create_section">
+					<h3>Create a group</h3>
+					<form method="POST" action="groups.inc.php" enctype="multipart/form-data">
+						<input type="hidden" name="admin" value=<?php echo inc_getId($_SESSION['netw_uid']); ?>>
+						<b>Group name</b>
+						<input type="text" name="gid">
+						<b>Group bio (optional)</b>
+						<textarea name="bio"></textarea>
+						<b>Group picture (optional)</b>
+						<input type="file" name="img">
+						<b>Group privacy</b>
+						<div>
+							<input type="radio" name="privacy" value="0" checked="true">
+							<span> - Public</span>
+							<br>
+							<input type="radio" name="privacy" value="1">
+							<span> - Member invites only</span>
+							<br>
+							<input type="radio" name="privacy" value="2">
+							<span> - Admin invites only</span>
+						</div>
+						<button type="submit" name="setGroup_subm" class="bttn-focus"><i class="fa fa-plus"></i> Create</button>
+					</form>
+				</section>
+			<?php endif ?>
+
 		<?php endif ?>
 
 		<br>
@@ -104,6 +139,10 @@
 			<span id="user_friends_list_span">
 				<?php inc_showFriends($_GET['usr'], "list"); ?>
 			</span>
+			<h2 style="border-top: 1px solid #ccc;">Groups</h2>
+			<span>
+				<?php inc_showUserGroups($_GET['usr']); ?>
+			</span>
 		</section>
 
 		<?php if ($_SESSION['netw_uid'] == inc_getInfo($_GET['usr'], "uid")): ?>
@@ -111,7 +150,7 @@
 				<?php inc_showFriends($_GET['usr'], "req"); ?>
 			</section>
 		<?php endif ?>
-		
+
 	</div>
 </div>
 
@@ -120,6 +159,7 @@
 <script src="JS/ajax/refresh.ajax.js"></script>
 <script src="JS/user_edit.js"></script>
 <script src="JS/buttons.js"></script>
+<script src="JS/group_create.js"></script>
 
 </body>
 </html>

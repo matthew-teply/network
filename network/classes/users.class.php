@@ -1,9 +1,9 @@
 <?php
 
+include_once 'db.inc.php';
 session_start();
-include 'db.inc.php';
 
-class User {
+class User extends DBConnection {
 
 	private $conn;
 
@@ -24,22 +24,17 @@ class User {
 
 		$row = $results->fetch_assoc();
 
-		if($opt == "uid")
-			return $row['uid'];
-		if($opt == "em")
-			return $row['em'];
-		if($opt == "first")
-			return $row['first'];
-		if($opt == "last")
-			return $row['last'];
+		if($opt == "pwd")
+			exit("You cannot request password!");
+
 		if($opt == "img") {
 			if($row['img'] != NULL)
 				return $row['img'];
 			else
 				return "resources/imgs/user_def.png";
 		}
-		if($opt == "bio")
-			return $row['bio'];
+
+		return $row[$opt];
 	}
 
 	public function getId($username) {
@@ -169,10 +164,14 @@ class User {
 			$row = $results->fetch_assoc();
 
 			if($opt == "list")
-				if(empty($f_array))
-					echo "You have no friends. :(";
-				else {
+				if(empty($f_array[0])) {
+					if($this->getInfo($id, "uid") == $_SESSION['netw_uid'])
+						echo "<p style='margin: 10px;'>You have no friends.</p>";
+					else
+						echo "<p style='margin: 10px; color: #aaa; text-align: center;'>".$this->getInfo($id, "first")." has no friends.</p>";
+				}
 
+				else {
 					echo "
 					<div>
 						<a href='index.php?usr=".$row['id']."'><img src='"; 
@@ -186,16 +185,13 @@ class User {
 					"
 						.$row['first']." ".$row['last']."</a>";
 
-					if(isset($_GET['usr'])) {
-						
-						if($_GET['usr'] == $this->getId($_SESSION['netw_uid'])) {
-							echo "
-								<form style='display: inline-block;' class='f_remove_from' id='_r".$row['id']."'>
-									<input type='hidden' id='f_remove_f_id_r".$row['id']."' value='".$row['id']."'>
-									<button type='submit'><i class='fa fa-trash'></i></button>
-								</form>
-							";
-						}
+					if($id == $this->getId($_SESSION['netw_uid'])) {
+						echo "
+							<form style='display: inline-block;' class='f_remove_from' id='_r".$row['id']."'>
+								<input type='hidden' id='f_remove_f_id_r".$row['id']."' value='".$row['id']."'>
+								<button type='submit'><i class='fa fa-trash'></i></button>
+							</form>
+						";
 					}
 
 					echo "</div>";
@@ -206,16 +202,17 @@ class User {
 				else {
 					echo 
 					"
+					<div>
 					<span id='span_".$row['id']."'>
 						<form class='f_add_form' id='_".$row['id']."'>
-							<span><a href='index.php?usr=".$row['id']."'><img src='";
+							<span><a href='index.php?usr=".$row['id']."'><img src=";
 
-								if($this->getInfo($row['id'], "img") != NULL)
+								if($row['img'] != NULL)
 									echo $row['img'];
 								else
 									echo "resources/imgs/user_def.png";
 
-							echo "'> ".$row['first']." ".$row['last']."</a> wants to be your friend!</span>
+							echo "> ".$row['first']." ".$row['last']."</a> wants to be your friend!</span>
 							<input type='hidden' value='".$row['id']."' id='f_add_f_id_".$row['id']."'>
 							<input type='hidden' value='".$this->getId($_SESSION['netw_uid'])."' id='f_add_id_".$row['id']."'>
 							<button type='submit' class='f_add_form_button' id='f_add_form_button_".$row['id']."'><i class='fa fa-check'></i></button>
@@ -226,6 +223,7 @@ class User {
 							<button type='submit' class='f_decline_form_button' id='f_decline_form_button_".$row['id']."'><i class='fa fa-times'></i></button>
 						</form>
 					</span>
+					</div>
 					";
 				}
 
@@ -488,7 +486,7 @@ class User {
 		if ($file_error === 0) {
 
 			$file_newName = $this->getInfo($id, "uid") . "." . $file_actualExt;
-			$file_destination = 'uploads/'.$file_newName;
+			$file_destination = 'uploads/img_usr/'.$file_newName;
 
 			move_uploaded_file($file_tmpName, $file_destination);
 		}
@@ -500,5 +498,6 @@ class User {
 		$stmnt->bind_param("si", $file_destination, $id);
 
 		$stmnt->execute();
-	} 
+	}
+
 }

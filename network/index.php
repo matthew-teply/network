@@ -6,6 +6,7 @@
 
 	//includes
 	include 'users.inc.php';
+	include 'groups.inc.php';
 
 ?>
 
@@ -13,7 +14,7 @@
 <html>
 <head>
 	<title>
-		Network
+		Social Pie
 	</title>
 
 	<link rel="stylesheet" type="text/css" href="CSS/root.css">
@@ -25,7 +26,9 @@
 </head>
 <body>
 
-<input type="hidden" id="user_id" value=<?php echo inc_getId($_SESSION['netw_uid']); ?>>
+<?php if (isset($_SESSION['netw_uid'])): ?>
+	<input type="hidden" id="user_id" value=<?php echo inc_getId($_SESSION['netw_uid']); ?>>
+<?php endif ?>
 
 <?php 
 
@@ -33,6 +36,8 @@
 
 	if(isset($_GET['usr']))
 		include 'pages/user.php'; //IF ?usr is set, show user page, with user's [*] ID in ?usr
+	elseif(isset($_GET['grp']))
+		include 'pages/group.php'; //IF $grp is set, show group page, with groups [*] ID in ?usr
 	else {
 
 		if(!isset($_SESSION['netw_uid'])) //IF you are not logged in, show welcome page

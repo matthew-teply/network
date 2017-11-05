@@ -1,0 +1,6 @@
+GROUPS
+	- 0 = public
+	- 1 = members and admin invites only
+	- 2 = admin invites only
+
+	- Max characters for gid : 28
